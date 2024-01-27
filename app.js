@@ -8,10 +8,10 @@ form.addEventListener('submit', async function (e) {
     const res = await axios.get('https://api.tvmaze.com/search/shows', config);
     displayImages(res.data);
     searchValue.value = '';
-    removeImages();
 });
-const displayImages = (shows) => {
 
+const displayImages = (shows) => {
+    displayShows.innerHTML = '';
     for (let result of shows) {
         if(result.show.image) {
             const img = document.createElement('img');
@@ -19,13 +19,4 @@ const displayImages = (shows) => {
             displayShows.append(img);
         }
     }
-}
-
-const removeImages = () => {
-    var imgElements = document.getElementsByTagName("img"); // select all images
-
-    for(var i=0; i<imgElements.length; i++) {
-    var img = imgElements[i];
-    img.remove();
-    } //remove all images by looping through all of them
 }
